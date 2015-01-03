@@ -57,4 +57,50 @@ treevector
 (reduce-random-numbers 1 - 1)
 
 
+(conj '(:a :b :c :d) :e)
 
+(subvec [:peanut :butter :and :jelly] 1 3)
+
+
+(defn square[n] (* n n))
+
+(square 4)
+
+((fn [f2] (f2 5))
+          (fn [n] (* n n)))
+
+(filter (fn [x] (< x 31)) [10 20 30 40 50 60 70 80])
+
+(count "ab")
+
+(take 100 (iterate repeat :foo))
+
+
+(take 4 (iterate #(+ 1 %) 0))
+
+(take 12 (iterate #(keyword %) :foo))
+
+(for [x (range 6)]
+       x)
+
+(for [row [:top :middle :bottom]
+           column [:left :middle :right]]
+       )
+
+(vec (for [row [:top :middle :bottom]]
+       #(println-str %)))
+
+(let [not-a-symbol? (complement symbol?)]
+                  (map not-a-symbol? [:a 'b "c"]))
+
+(let [not-nil? (complement nil?)]
+         (filter not-nil? [nil :wheat nil "wheat" nil 'wheat nil]))
+
+(let [not-nil? (complement nil?)]
+  not-nil? 'a)
+
+(nil? "a")
+
+((comp #(* 2 %) inc) 4)
+
+(dec 10)
