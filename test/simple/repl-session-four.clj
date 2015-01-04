@@ -37,10 +37,23 @@
 
 ; the first five odd numbers, generated as 2*n+1
 (->>
-   (range 5)
-   (map #(* % 2))
+   (range)
+   (map #(* %1 2))
    (map inc)
+   (take 5)
    )
+
+'(0 1 2 3 4)
+'(0 2 4 6 8)
+'(1 3 5 7 9)
+
+(take 5
+    (map inc
+     (map #(* % 2)
+          (range))))
+
+(inc 3)
+
 
 (defn oddify [n]
   (+
@@ -55,4 +68,6 @@
  (map oddify)
  (take 5)) ;(1 3 5 7 9)
 
+
+(* 2 5)
 
