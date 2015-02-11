@@ -11,9 +11,9 @@
 (defn explode-string [string]
   (map #(-> %) (str string)))
 
-(defn contains-uppercase [password-no-upper]
+(defn contains-uppercase [string]
   (>
-   (count (only-uppercase (explode-string password-no-upper)))
+   (count (only-uppercase (explode-string string)))
    0))
 
 (= (contains-uppercase "aA") true)
