@@ -7,7 +7,10 @@
 
 (defn contains-uppercase [password-no-upper]
 
-(> (count (filter #(< (int %) (int \a)) (map #(-> %) (str password-no-upper)))) 0))
+(defn only-uppercase [letters]
+  (filter #(< (int %) (int \a)) letters))
+
+(> (count (only-uppercase (map #(-> %) (str password-no-upper)))) 0))
 
 (= (contains-uppercase "aA") true)
 (= (contains-uppercase "aa") false)
