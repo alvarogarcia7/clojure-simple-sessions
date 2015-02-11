@@ -9,5 +9,7 @@
 
 (> (count (filter #(< (int %) (int \a)) (map #(-> %) (str password-no-upper)))) 0))
 
-(contains-uppercase "aA")
+(= (contains-uppercase "aA") true)
+(= (contains-uppercase "aa") false)
+
 
