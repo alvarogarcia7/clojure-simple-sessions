@@ -76,6 +76,9 @@
 (def list-of-lists
   (map #(-> (seq %)) '([1 2 3])))
 
+(map #(join-digits %) list-of-lists)
+; java.lang.ClassCastException: clojure.lang.PersistentVector$ChunkedSeq cannot be cast to clojure.lang.IPersistentStack
+
 (seq [1 2 3 ])
 (shuffle #{2 3 1})
 (conj #{} 2)
