@@ -2,10 +2,10 @@
   (if (= (apply + coins) amount)
     coins
     (let [is-amount #(= amount %)]
-    (if (= (some is-amount coins))
-      (filter is-amount coins)
-      '()
-      ))))
+      (if (= (some is-amount coins))
+        (filter is-amount coins)
+        '()
+        ))))
 
 ; need to return all coins
 (= (coin-change '(1) 1) '(1))
