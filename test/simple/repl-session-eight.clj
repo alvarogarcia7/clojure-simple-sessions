@@ -19,6 +19,9 @@
 
 (divisors-of 8)
 
+; from John Lawrence Aspden in http://stackoverflow.com/questions/2352020/debugging-in-clojure
+(defmacro dbg[x] `(let [x# ~x] (println "dbg:" '~x "=" x#) x#))
+
 (defn is-prime [n]
   (=
    (count (divisors-of n))
@@ -69,15 +72,27 @@
 
 (permutation (split-into-digits 123))
 (map #(-> (seq %)) (permutation (split-into-digits 123)))
-(map #(join-digits %) (seq '(2 3 1) ))
+
+(def dig '(2 3 1))
+
+dig
+
+(#(join-digits %) dig)
+(dbg (map #(apply + %) '((1 2) (1 3))))
+
+(apply + '(1 2 1 3))
+
+(println (+ (* 2 3) (dbg (* 8 9))))
 
 (join-digits '(2 1 3))
 
+; http://stackoverflow.com/questions/7927899/clojure-summing-values-in-a-collection-of-maps
 (def list-of-lists
-  (map #(-> (seq %)) '([1 2 3])))
+  '((1 2 3) (1 3 2)))
+
+list-of-lists
 
 (map #(join-digits %) list-of-lists)
-; java.lang.ClassCastException: clojure.lang.PersistentVector$ChunkedSeq cannot be cast to clojure.lang.IPersistentStack
 
 (seq [1 2 3 ])
 (shuffle #{2 3 1})
