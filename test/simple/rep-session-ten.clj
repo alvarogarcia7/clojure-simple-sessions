@@ -1,11 +1,17 @@
-(defn coin-change [coins amount]
-  (if (= (apply + coins) amount)
-    coins
-    (let [is-amount #(= amount %)]
-      (if (= (some is-amount coins))
-        (filter is-amount coins)
-        '()
-        ))))
+(defn coin-change
+  ([coins amount]
+    (if (= (apply + coins) amount)
+      coins
+      (let [is-amount #(= amount %)]
+        (if (some is-amount coins)
+          (do
+            (println (str coins " " amount))
+            (filter is-amount coins))
+          (coin-change coins '() amount)
+          ))))
+  ([remaining-coins used-coins remaining-amount]
+   '(2 1)))
+
 
 ; need to return all coins
 (= (coin-change '(1) 1) '(1))
@@ -24,3 +30,7 @@
 ; 3 ; 1 1 => ()
 ; 6 ; 2 2 => ()
 
+(filter #(not (even? %)) (range 0 10))
+; 1 3 5 7 9
+(filter #(even? %) (range 0 10))
+; 0 2 4 6 8
