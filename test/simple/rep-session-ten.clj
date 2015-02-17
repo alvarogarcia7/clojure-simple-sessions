@@ -16,8 +16,11 @@
 ; a single coin is enough to change but there are other coins available
 (= (coin-change '(2 1) 2) '(2))
 
+; two coins needed, but not the sum of them all
+(= (coin-change '(2 1 1) 3) '(2 1))
+
 ; remaining examples:
-; 3 ; 2 1 => (2, 1)
+; 3 ; 2 1 1 => (2, 1)
 ; 3 ; 1 1 => ()
 ; 6 ; 2 2 => ()
 
