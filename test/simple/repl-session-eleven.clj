@@ -4,7 +4,9 @@
 ; f(n) = n * f(n-1) ; n > 0
 
 (defn factorial [n]
-  1)
+  (if (<= n 1)
+    1
+    n))
 
 (= (factorial 0) 1)
 (= (factorial 2) 2)
