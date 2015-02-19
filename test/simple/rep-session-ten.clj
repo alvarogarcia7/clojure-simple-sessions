@@ -25,6 +25,8 @@
 ; two coins needed, but not the sum of them all
 (= (coin-change '(2 1 1) 3) '(2 1))
 
+(coin-change '(2 1 1) '() 3)
+
 ; remaining examples:
 ; 3 ; 2 1 1 => (2, 1)
 ; 3 ; 1 1 => ()
@@ -34,3 +36,21 @@
 ; 1 3 5 7 9
 (filter #(even? %) (range 0 10))
 ; 0 2 4 6 8
+
+; remove first
+(filter #(not (= 1 %)) '(1 1 2))
+
+(map char (clojure.string/upper-case "ı vs i."))
+(map char (clojure.string/lower-case "İ vs I."))
+
+(map int (clojure.string/upper-case "ıiİI"))
+(map int "ıiİI")
+(map int (clojure.string/lower-case "İ"))
+(map int "İ")
+
+ (clojure.string/lower-case
+  (clojure.string/upper-case "ı"))
+
+
+
+ (clojure.string/lower-case "ı")

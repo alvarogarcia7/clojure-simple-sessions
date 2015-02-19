@@ -71,7 +71,14 @@
 (= (split-into-digits 123) '(1 2 3))
 
 (permutation (split-into-digits 123))
-(map #(-> (seq %)) (permutation (split-into-digits 123)))
+(def g
+  (map #(-> (seq %)) (permutation (split-into-digits 123))))
+
+(dbg g)
+
+g
+
+(map #(join-digits %) g)
 
 (def dig '(2 3 1))
 
