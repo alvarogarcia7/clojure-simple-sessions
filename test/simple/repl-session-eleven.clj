@@ -8,7 +8,8 @@
 (defn factorial [n]
   (if (<= n 1)
     1
-    (*' n (factorial (dec n)))))
+    (let [n-1 (dec n)]
+    (*' n (recur n-1)))))
 
 (= (factorial 0) 1)
 (= (factorial 1) 1)
