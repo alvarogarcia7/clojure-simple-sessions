@@ -15,3 +15,6 @@
 (= (factorial 2) 2)
 (= (factorial 3) 6)
 (= (factorial 25) 15511210043330985984000000N)
+
+; a number bigger than the stack
+(factorial 10000)
