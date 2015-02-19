@@ -7,3 +7,4 @@
   1)
 
 (= (factorial 0) 1)
+(= (factorial 2) 2)
