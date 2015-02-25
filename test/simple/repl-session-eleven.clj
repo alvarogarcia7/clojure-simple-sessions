@@ -5,11 +5,14 @@
 
 ; http://stackoverflow.com/questions/8767627/how-do-i-avoid-arithmeticexception-integer-overflow-in-clojure
 ; use one of the auto-promoting math functions:+', -', *', /', inc', dec'
-(defn factorial [n]
-  (if (<= n 1)
-    1
-    (let [n-1 (dec n)]
-    (*' n (recur n-1)))))
+(defn fact [x]
+    (loop [n x f 1]
+        (if (= n 1)
+            f
+            (recur (dec n) (* f n)))))
+
+(def factorial [x]
+  (fact x) )
 
 (= (factorial 0) 1)
 (= (factorial 1) 1)
