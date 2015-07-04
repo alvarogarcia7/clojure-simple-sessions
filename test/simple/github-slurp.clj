@@ -4,7 +4,7 @@
 (def file-write "/Users/alvaro/Documents/sandbox/clojure/simple/test/simple/RegistryShould.txt.out")
 
 (defn read-file [file]
-  (def contents '())
+  (def contents '(""))
   (with-open [rdr (io/reader file)]
     (doseq [line (line-seq rdr)]
       (def contents (conj contents line))))
