@@ -27,6 +27,8 @@ contents
 extractedLines
 (assert (= 2 (count extractedLines)))
 
+(code contents {:lines ['(1) '(2) '(3)]})
+
 (def foo (map println [1 2 3]))
 (def foo (doall (map println [1 2 3])))
 
