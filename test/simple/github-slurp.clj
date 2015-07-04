@@ -17,12 +17,15 @@ contents
  (fn [index content] [index content])
    contents)
 
+(defn get-contents-by-line-number [contents lines]
+  (map #(nth contents %) lines))
+
 (defn code [contents & [{lines :lines}]]
-   (map #(nth contents %) lines))
+  (map #(get-contents-by-line-number contents %) lines))
 
-(code contents {:lines (range 1 4)})
-
-(doseq #(-> %) (vec contents))
+(def extractedLines (code contents {:lines [(range 1 1) (range 1 1)]}))
+extractedLines
+(assert (= 2 (count extractedLines)))
 
 (def foo (map println [1 2 3]))
 (def foo (doall (map println [1 2 3])))
