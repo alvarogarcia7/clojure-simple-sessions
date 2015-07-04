@@ -27,13 +27,13 @@ contents
   (map #(nth contents %) lines))
 
 (defn code [contents & [{lines :lines}]]
-  (map #(get-contents-by-line-number contents %) lines))
+  (map #(lines-cleanup % '("\t"))
+       (map #(get-contents-by-line-number contents %) lines)))
+(code contents {:lines [(range 1 4)]})
 
 (def extractedLines (code contents {:lines [(range 1 1) (range 1 1)]}))
 extractedLines
 (assert (= 2 (count extractedLines)))
-
-(code contents {:lines ['(1) '(2) '(3)]})
 
 ; test
 (assert
