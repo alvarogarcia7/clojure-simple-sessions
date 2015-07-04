@@ -29,7 +29,16 @@ extractedLines
 
 (code contents {:lines ['(1) '(2) '(3)]})
 
-(def foo (map println [1 2 3]))
-(def foo (doall (map println [1 2 3])))
+(defn line-cleanup [mess tok]
+     (if (empty? tok)
+       mess
+       (let [removed (clojure.string/replace mess (first tok) "")]
+        (line-cleanup removed (rest tok)))))
+
+(line-cleanup
+ "a\taa\t\t\n\n" ["\t" "\n"])
+
+; (def foo (map println [1 2 3]))
+; (def foo (doall (map println [1 2 3])))
 
 (map-indexed (fn [idx itm] [idx itm]) '(:f :o))
