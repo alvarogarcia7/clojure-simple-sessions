@@ -18,8 +18,13 @@ contents
    contents)
 
 (defn code [contents & [{lines :lines}]]
-   lines)
+   (map #(nth contents %) lines))
 
 (code contents {:lines (range 1 4)})
+
+(doseq #(-> %) (vec contents))
+
+(def foo (map println [1 2 3]))
+(def foo (doall (map println [1 2 3])))
 
 (map-indexed (fn [idx itm] [idx itm]) '(:f :o))
