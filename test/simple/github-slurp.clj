@@ -32,7 +32,7 @@ contents
 (defn code [contents & [{lines :lines}]]
   (map #(lines-cleanup % '("\t"))
        (map #(get-contents-by-line-number contents %) lines)))
-(code contents {:lines [(range 1 4) (range 1 5)]})
+(code contents config)
 
 (defn write-file [contents filename]
   (with-open [w (clojure.java.io/writer filename :append false)]
@@ -42,9 +42,20 @@ contents
 
 (defn read-slurp-write [file-in config file-out]
   (write-file
-   (code (read-file file-in) config) file-out))
+   ((:output config)
+     (code (read-file file-in) config)) file-out))
+(defn markdown-format [style contents]
+   (map #(concat (cons (str "```" style) %) '("```")) contents))
 
-(read-slurp-write file {:lines [(range 1 8) (range 2 4)]} file-write)
+(defn markdown-java [contents]
+   (markdown-format "java" contents))
+
+(def config {:lines [(range 1 8) (range 2 4)]
+   :output markdown-java})
+(read-slurp-write file config file-write)
+
+;using a function in a map on other objects
+((:output config) (code contents config))
 
 (take 3 (repeatedly #(->  (rand))))
 
