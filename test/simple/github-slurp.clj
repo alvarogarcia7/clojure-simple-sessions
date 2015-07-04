@@ -17,11 +17,11 @@ contents
  (fn [index content] [index content])
    contents)
 
-(defn line-cleanup [mess tok]
+(defn lines-cleanup [mess tok]
      (if (empty? tok)
        mess
        (let [removed (map #(clojure.string/replace % (first tok) "") mess)]
-        (line-cleanup removed (rest tok)))))
+        (lines-cleanup removed (rest tok)))))
 
 (defn get-contents-by-line-number [contents lines]
   (map #(nth contents %) lines))
@@ -38,7 +38,7 @@ extractedLines
 ; test
 (assert
  (=
-  (line-cleanup '("a\taa\t\t\n\n" "bbbb\n\t") ["\t" "\n"])
+  (lines-cleanup '("a\taa\t\t\n\n" "bbbb\n\t") ["\t" "\n"])
   '("aaa" "bbbb")))
 
 ; (def foo (map println [1 2 3]))
