@@ -22,8 +22,4 @@ contents
 
 (code contents {:lines (range 1 4)})
 
-(range 1 3)
-
 (map-indexed (fn [idx itm] [idx itm]) '(:f :o))
-
-(identity 1)
