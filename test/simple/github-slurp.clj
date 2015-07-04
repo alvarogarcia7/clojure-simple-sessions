@@ -32,17 +32,23 @@ contents
 (defn code [contents & [{lines :lines}]]
   (map #(lines-cleanup % '("\t"))
        (map #(get-contents-by-line-number contents %) lines)))
-(code contents {:lines [(range 1 4)]})
+(code contents {:lines [(range 1 4) (range 1 5)]})
 
-(defn write-file [filename contents]
+(defn write-file [contents filename]
   (with-open [w (clojure.java.io/writer filename :append false)]
-    (.write w (clojure.string/join "\n" contents))))
-(write-file file-write '(1 2 3 "string" "hello world!" "lineA" "lineB"))
+    (.write w (clojure.string/join "\n" (flatten contents)))))
+
+(write-file '('(1 2 3 "string") '("hello world!" "lineA" "lineB"))  file-write )
 
 (defn read-slurp-write [file-in config file-out]
-  file-in)
+  (write-file
+   (code (read-file file-in) config) file-out))
 
-(def extractedLines (code contents {:lines [(range 1 1) (range 1 1)]}))
+(read-slurp-write file {:lines [(range 1 8) (range 2 4)]} file-write)
+
+(take 3 (repeatedly #(->  (rand))))
+
+(def extractedLines (code contents {:lines [(range 1 8) (range 2 4)]}))
 extractedLines
 (assert (= 2 (count extractedLines)))
 
