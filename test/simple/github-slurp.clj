@@ -4,12 +4,20 @@
 (def file "/Users/alvaro/Documents/sandbox/clojure/simple/test/simple/RegistryShould.txt")
 (def file-write "/Users/alvaro/Documents/sandbox/clojure/simple/test/simple/RegistryShould.txt.out")
 
+(defn markdown-format [style contents]
+  (map #(concat (cons (str "```" style) %) '("```")) contents))
+
+
 (defn read-file [file]
   (def contents '(""))
   (with-open [rdr (io/reader file)]
     (doseq [line (line-seq rdr)]
       (def contents (conj contents line))))
   contents)
+
+(defn write-file [contents filename]
+  (with-open [w (clojure.java.io/writer filename :append false)]
+    (.write w (clojure.string/join "\n" (flatten contents)))))
 
 (defn lines-cleanup [mess tok]
   (if (empty? tok)
@@ -24,16 +32,10 @@
   (map #(lines-cleanup % '("\t"))
        (map #(get-contents-by-line-number contents %) lines)))
 
-(defn write-file [contents filename]
-  (with-open [w (clojure.java.io/writer filename :append false)]
-    (.write w (clojure.string/join "\n" (flatten contents)))))
-
-(defn read-slurp-write [file-in config file-out]
+(defn read-code-write [file-in config file-out]
   (write-file
    ((:output config)
     (code (read-file file-in) config)) file-out))
-(defn markdown-format [style contents]
-  (map #(concat (cons (str "```" style) %) '("```")) contents))
 
 (defn markdown-java [contents]
   (markdown-format "java" contents))
