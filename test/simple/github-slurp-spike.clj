@@ -1,3 +1,4 @@
+; Warning: as of 2015-07-06, this version is no longer compatible with the production code. use with caution
 (ns github-slurp
     (:require [clojure.java.io :as io]))
 (def file "/Users/alvaro/Documents/sandbox/clojure/simple/test/simple/RegistryShould.txt")
