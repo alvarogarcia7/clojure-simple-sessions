@@ -14,3 +14,8 @@
 
 (defn sum-rec [higher-bound]
   (sum-rec2 0 higher-bound))
+
+(defn sum-notc[i]
+  (if (< i 0)
+    0
+    (+ (sum-notc (dec i)) i)))
