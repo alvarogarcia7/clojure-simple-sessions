@@ -6,3 +6,11 @@
     (if (< i 0)
       sum
       (recur (+ sum i) (dec i)))))
+
+(defn sum-rec2[sum i]
+  (if (< i 0)
+    sum
+    (sum-rec2 (+ sum i) (dec i))))
+
+(defn sum-rec [higher-bound]
+  (sum-rec2 0 higher-bound))
