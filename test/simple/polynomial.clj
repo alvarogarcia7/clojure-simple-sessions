@@ -28,14 +28,13 @@
    :value (eval (macroexpand expression))})
 
 (defn all-truthy? [& elements]
-  (let [exprs (map decorate-with-name elements)]
-  (let [all-correct (every? #(identity (:value %)) exprs)
+  (let [exprs (map decorate-with-name elements)
+         all-correct (every? #(identity (:value %)) exprs)
          wrong (filter #(false? (:value %)) exprs)]
          (if all-correct
            true
            wrong)
-
-         )))
+         ))
 
 (defn facts []
   (all-truthy?
