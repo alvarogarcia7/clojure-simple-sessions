@@ -198,3 +198,7 @@
 (facts)
 (load-file "test/simple/polynomial.clj")
 (facts)
+(load-file "test/simple/polynomial.clj")
+(facts)
+(load-file "test/simple/polynomial.clj")
+(facts)
