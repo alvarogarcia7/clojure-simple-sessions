@@ -31,7 +31,7 @@
   (let [exprs (map decorate-with-name elements)
          value-of #(:value %)
          all-correct (every? (comp identity value-of) exprs)
-         wrong (filter #(false? (value-of %)) exprs)]
+         wrong (filter (comp false? value-of) exprs)]
          (if all-correct
            true
            wrong)
