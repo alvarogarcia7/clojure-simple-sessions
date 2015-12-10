@@ -23,8 +23,13 @@
       (reduce + replaced-values)
       replaced-values)))
 
+(defn decorate-with-name [expression]
+  {:expression expression
+   :value (eval (macroexpand expression))})
+
 (defn all-truthy? [& elements]
-  (let [elements (map #(eval (macroexpand %)) elements)]
+  (let [exprs (map decorate-with-name elements)
+         elements (map :value exprs)]
   (every? identity elements)))
 
 (defn facts []
