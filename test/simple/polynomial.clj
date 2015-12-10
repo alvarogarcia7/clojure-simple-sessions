@@ -3,10 +3,15 @@
     value
     part))
 
+(defn simplifiable? [polynomial]
+  (every? number? polynomial))
+
 (defn eva [polynomial x]
   (let [replace-single-variable (partial replace-single-variable :x x)
          replaced-values (map replace-single-variable polynomial)]
-    (reduce + replaced-values)))
+    (if (simplifiable? replaced-values)
+      (reduce + replaced-values)
+      replaced-values)))
 
 (defn all-truthy? [& elements]
   (every? identity elements))
