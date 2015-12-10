@@ -28,11 +28,9 @@
    :value (eval (macroexpand expression))})
 
 (defn all-truthy? [& elements]
-  (let [exprs (map decorate-with-name elements)
-         results (map #(merge (if (identity (:value %)) {:result true} {:result false}) %) exprs)
-         elements (map :result results)]
-  (let [all-correct (every? identity elements)
-         wrong (filter #(false? (:result %)) results)]
+  (let [exprs (map decorate-with-name elements)]
+  (let [all-correct (every? #(identity (:value %)) exprs)
+         wrong (filter #(false? (:value %)) exprs)]
          (if all-correct
            true
            wrong)
