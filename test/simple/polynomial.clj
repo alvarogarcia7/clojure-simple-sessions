@@ -1,10 +1,11 @@
-(defn replace-single-variable [symbol- part value]
+(defn replace-single-variable [symbol- value part]
   (if (= symbol- part)
     value
     part))
 
 (defn eva [polynomial x]
-  (let [replaced-values (map #(replace-single-variable :x % x) polynomial)]
+  (let [replace-single-variable (partial replace-single-variable :x x)
+         replaced-values (map #(replace-single-variable %) polynomial)]
     (reduce + replaced-values)))
 
 (defn all-truthy? [& elements]
