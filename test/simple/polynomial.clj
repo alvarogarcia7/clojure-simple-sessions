@@ -5,7 +5,7 @@
 
 (defn eva [polynomial x]
   (let [replace-single-variable (partial replace-single-variable :x x)
-         replaced-values (map #(replace-single-variable %) polynomial)]
+         replaced-values (map replace-single-variable polynomial)]
     (reduce + replaced-values)))
 
 (defn all-truthy? [& elements]
