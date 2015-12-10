@@ -1,12 +1,11 @@
 (defn eva [polynomial x]
-  (println polynomial)
-  (map #(if (= :x %) x %) [:x])
-  0)
+  (reduce + (map #(if (= :x %) x %) polynomial)))
 
 (defn all-truthy? [& elements]
   (every? identity elements))
 
 (defn facts []
   (all-truthy?
-    (= 0 (eva [0] 1)
-    (= 1 (eva [:x] 1)))))
+    (= 0 (eva [0] 1))
+    (= 1 (eva [:x] 1))
+  ))
