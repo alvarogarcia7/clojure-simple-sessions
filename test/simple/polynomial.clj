@@ -29,8 +29,9 @@
 
 (defn all-truthy? [& elements]
   (let [exprs (map decorate-with-name elements)
-         all-correct (every? #(identity (:value %)) exprs)
-         wrong (filter #(false? (:value %)) exprs)]
+         value-of #(:value %)
+         all-correct (every? #(identity (value-of %)) exprs)
+         wrong (filter #(false? (value-of %)) exprs)]
          (if all-correct
            true
            wrong)
