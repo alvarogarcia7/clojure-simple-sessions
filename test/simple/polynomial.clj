@@ -33,9 +33,8 @@
          all-correct (every? (comp identity value-of) exprs)
          wrong (filter (comp false? value-of) exprs)]
          (if all-correct
-           true
-           wrong)
-         ))
+           {:message "OK"}
+           {:message (str "KO - " (count wrong)) :failing wrong})))
 
 (defn facts []
   (all-truthy?
