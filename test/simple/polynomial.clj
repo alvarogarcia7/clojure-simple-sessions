@@ -1,5 +1,6 @@
 (defn eva [polynomial x]
-  (reduce + (map #(if (= :x %) x %) polynomial)))
+  (let [replaced-values (map #(if (= :x %) x %) polynomial)]
+    (reduce + replaced-values)))
 
 (defn all-truthy? [& elements]
   (every? identity elements))
