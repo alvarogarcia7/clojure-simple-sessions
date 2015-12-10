@@ -3,12 +3,22 @@
     value
     part))
 
+(defn apply-coefficient [coefficients variable]
+  [(* variable (first coefficients))
+   (second coefficients)])
+
 (defn simplifiable? [polynomial]
   (every? number? polynomial))
 
-(defn eva [polynomial x]
-  (let [replace-single-variable (partial replace-single-variable :x x)
-         replaced-values (map replace-single-variable polynomial)]
+(defn parse- [polynomial-repr variable]
+  (cond
+    (= "0" polynomial-repr) [0 0]
+    (= "x" polynomial-repr) [0 1]
+    (= "y" polynomial-repr) [0 :y]))
+
+(defn eva [polynomial-repr x]
+  (let [polynomial (parse- polynomial-repr :x)
+         replaced-values (apply-coefficient polynomial x)]
     (if (simplifiable? replaced-values)
       (reduce + replaced-values)
       replaced-values)))
@@ -18,7 +28,7 @@
 
 (defn facts []
   (all-truthy?
-    (= 0 (eva [0] 1))
-    (= 1 (eva [:x] 1))
-    (= [:y] (eva [:y] 1))
+    (= 0 (eva "0" 1))
+    (= 1 (eva "x" 1))
+    (= [0 :y] (eva "y" 1))
   ))
