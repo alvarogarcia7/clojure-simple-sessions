@@ -38,7 +38,13 @@
 
 (defn facts []
   (all-truthy?
-    '(= 2 (eva "0" 1))
+    '(= 0 (eva "0" 1))
     '(= 1 (eva "x" 1))
     '(= [0 :y] (eva "y" 1))
+  ))
+
+(defn test-library-facts []
+  (all-truthy?
+    '(= false true)
+    '(= 1 1)
   ))

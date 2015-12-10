@@ -217,3 +217,6 @@
 (load-file "test/simple/polynomial.clj")
 (facts)
 (:line :a)
+(load-file "test/simple/polynomial.clj")
+(facts)
+(test-library-facts)
