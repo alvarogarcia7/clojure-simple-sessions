@@ -29,12 +29,19 @@
 
 (defn all-truthy? [& elements]
   (let [exprs (map decorate-with-name elements)
-         elements (map :value exprs)]
-  (every? identity elements)))
+         results (map #(merge (if (identity (:value %)) {:result true} {:result false}) %) exprs)
+         elements (map :result results)]
+  (let [all-correct (every? identity elements)
+         wrong (filter #(false? (:result %)) results)]
+         (if all-correct
+           true
+           wrong)
+
+         )))
 
 (defn facts []
   (all-truthy?
-    '(= 0 (eva "0" 1))
+    '(= 2 (eva "0" 1))
     '(= 1 (eva "x" 1))
     '(= [0 :y] (eva "y" 1))
   ))
