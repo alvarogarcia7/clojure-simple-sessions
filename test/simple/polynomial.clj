@@ -24,11 +24,12 @@
       replaced-values)))
 
 (defn all-truthy? [& elements]
-  (every? identity elements))
+  (let [elements (map #(eval (macroexpand %)) elements)]
+  (every? identity elements)))
 
 (defn facts []
   (all-truthy?
-    (= 0 (eva "0" 1))
-    (= 1 (eva "x" 1))
-    (= [0 :y] (eva "y" 1))
+    '(= 0 (eva "0" 1))
+    '(= 1 (eva "x" 1))
+    '(= [0 :y] (eva "y" 1))
   ))
