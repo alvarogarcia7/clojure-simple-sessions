@@ -23,12 +23,12 @@
       (reduce + replaced-values)
       replaced-values)))
 
-(defn decorate-with-name [expression]
+(defn evaluate [expression]
   {:expression expression
    :value (eval (macroexpand expression))})
 
 (defn all-truthy? [& elements]
-  (let [exprs (map decorate-with-name elements)
+  (let [exprs (map evaluate elements)
          value-of #(:value %)
          all-correct (every? (comp identity value-of) exprs)
          wrong (filter (comp false? value-of) exprs)]

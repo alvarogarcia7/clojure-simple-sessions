@@ -216,3 +216,4 @@
 (facts)
 (load-file "test/simple/polynomial.clj")
 (facts)
+(:line :a)
