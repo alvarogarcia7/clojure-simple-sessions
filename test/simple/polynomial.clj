@@ -31,13 +31,12 @@
   (:value expression))
 
 (defn all-truthy? [& elements]
-  (let [
-         exprs (map evaluate elements)
-         all-correct (->> exprs (every? (comp identity value-of)))
-         wrong (->> exprs (filter (comp false? value-of)))]
+  (let [exprs (map evaluate elements)
+         all-correct (->> exprs (every? (comp identity value-of)))]
          (if all-correct
            {:message "OK"}
-           {:message (str "KO - " (count wrong)) :failing wrong})))
+           (let [wrong (->> exprs (filter (comp false? value-of)))]
+             {:message (str "KO - " (count wrong)) :failing wrong}))))
 
 (defn facts []
   (all-truthy?
