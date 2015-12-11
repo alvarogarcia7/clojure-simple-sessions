@@ -1,14 +1,14 @@
 ; copied, modified from http://www.braveclojure.com/writing-macros/
 
-(defn criticize-code
-  [criticism code]
-  `(println ~criticism (quote ~code)))
+(defn print-and-evaluate
+  [code]
+  `(println (str (quote ~code) ": " (~@code))))
 
-(defmacro code-critic
+(defmacro preval
   [good bad]
-  `(do ~@(map #(apply criticize-code %)
-              [["Sweet lion of Zion, this is bad code:" bad]
-               ["Great cow of Moscow, this is good code:" good]])))
+  `(do ~@(->>
+                 [bad good]
+                 (map criticize-code))))
 
 ; usage
 ; simple.core=> (code-critic (+ 1 1) (1 + 1))
