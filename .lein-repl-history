@@ -230,3 +230,5 @@
 (load-file "test/simple/polynomial.clj")
 (facts)
 (source ->>)
+(load-file "test/simple/polynomial.clj")
+(facts)
