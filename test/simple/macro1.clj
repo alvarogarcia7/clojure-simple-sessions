@@ -8,10 +8,11 @@
   [& expressions]
   `(do ~@(->>
                  expressions
-                 (map criticize-code))))
+                 (map print-and-evaluate))))
 
 ; usage
-; simple.core=> (code-critic (+ 1 1) (1 + 1))
-; Sweet lion of Zion, this is bad code: (1 + 1)
-; Great cow of Moscow, this is good code: (+ 1 1)
+; simple.core=> (preval (+ 1 1) (* 1 3))
+; (+ 1 1): 2
+; (* 1 3): 3
 ; nil
+
