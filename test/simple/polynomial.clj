@@ -27,9 +27,11 @@
   {:expression expression
    :value (eval (macroexpand expression))})
 
+(defn value-of [expression]
+  (:value expression))
+
 (defn all-truthy? [& elements]
   (let [
-         value-of #(:value %)
          exprs (map evaluate elements)
          all-correct (every? (comp identity value-of) exprs)
          wrong (filter (comp false? value-of) exprs)]

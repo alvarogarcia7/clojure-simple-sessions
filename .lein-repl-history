@@ -224,3 +224,6 @@
 (def name "jb")
 (load-file "test/simple/polynomial.clj")
 (facts)
+(->> 1 inc inc)
+(load-file "test/simple/polynomial.clj")
+(facts)
