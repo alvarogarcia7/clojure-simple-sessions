@@ -220,3 +220,7 @@
 (load-file "test/simple/polynomial.clj")
 (facts)
 (test-library-facts)
+(->> [1 2 3] inc inc inc)
+(def name "jb")
+(load-file "test/simple/polynomial.clj")
+(facts)
