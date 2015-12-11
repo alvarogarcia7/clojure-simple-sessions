@@ -2,7 +2,7 @@
 
 (defn print-and-evaluate
   [code]
-  `(println (str (quote ~code) ": " (~@code))))
+  `(println (str `code ": " (~@code))))
 
 (defmacro preval
   [& expressions]
