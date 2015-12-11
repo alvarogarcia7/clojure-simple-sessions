@@ -281,3 +281,5 @@
 (code-critic (+ 1 1) (* 1 3))
 (load-file "test/simple/macro1.clj")
 (preval (+ 1 1) (* 1 3))
+(load-file "test/simple/macro1.clj")
+(preval (+ 1 1) (* 1 3))

@@ -5,9 +5,9 @@
   `(println (str (quote ~code) ": " (~@code))))
 
 (defmacro preval
-  [good bad]
+  [& expressions]
   `(do ~@(->>
-                 [bad good]
+                 expressions
                  (map criticize-code))))
 
 ; usage
