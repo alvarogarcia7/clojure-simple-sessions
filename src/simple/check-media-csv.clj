@@ -12,7 +12,7 @@
     (reduce + (map #(parse-int (selector %)) set-)))
 
     (let [contents (doall (csv/read-csv in-file))
-           ca (filter #(re-matches #"CA.*" (first %)) contents)
+           ca (filter #(re-find #"CA" (first %)) contents)
            es (filter #(re-matches #"ES*" (first %)) contents)
          
            val1 (sum-selection ca second)
