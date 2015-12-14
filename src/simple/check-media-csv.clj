@@ -1,3 +1,6 @@
+(require '[clojure.data.csv :as csv]
+         '[clojure.java.io :as io])
+
 (def filename "c:/tmp/full.csv")
 
 
