@@ -8,14 +8,16 @@
   (defn parse-int [s]
     (Integer/parseInt (re-find #"\A-?\d+" s)))
   (defn printnums [& nums] (println nums))
+  (defn sum-selection [set- selector]
+    (reduce + (map #(parse-int (selector %)) set-)))
 
     (let [contents (doall (csv/read-csv in-file))
            ca (filter #(re-matches #"CA.*" (first %)) contents)
            es (filter #(re-matches #"ES*" (first %)) contents)
          
-           val1 (reduce + (map #(parse-int (second %)) ca))
-           val2 (reduce + (map #(parse-int (nth % 3)) ca))
-           val3 (reduce + (map #(parse-int (second %)) es))]
+           val1 (sum-selection ca second)
+           val2 (sum-selection ca #(nth % 3))
+           val3 (sum-selection es second)]
 
            	(printnums val1 val2 val3)
            	(= val1 val2 val3)))
