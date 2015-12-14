@@ -18,14 +18,13 @@
 
 (defmacro evaluate [expression]
   {:expression (str expression)
-   :value `(~@expression)})
+   :value expression})
 
 (defn value-of [expression]
   (:value expression))
 
 ; simple.core=> (evaluate (+ 1 1))
-; (+ 1 1)
-; 2
+; {:expression "(+ 1 1)", :value 2}
 
 ; (defmacro all-truthy? [& elements]
 ;   ~@(let [exprs (map evaluate elements)]
