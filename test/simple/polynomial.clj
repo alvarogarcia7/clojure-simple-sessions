@@ -22,6 +22,19 @@
     (if (simplifiable? replaced-values)
       (reduce + replaced-values)
       replaced-values)))
+    
+;; study this ===========================>
+;; (defn eva [polynomial x]
+;; 	(let [replace-single-variable (partial replace-single-variable :x x)
+;; 		replaced-values (map replace-single-variable polynomial)]
+;; 		(reduce + replaced-values)))
+;; 
+;; (defn eva [polynomial x]
+;; 	(let [substitute-variable (partial replace-single-variable :x x)]
+;; 		(->> 
+;; 			polynomial
+;; 			(map substitute-variable)
+;; 			(reduce +))))
 
 (defn evaluate [expression]
   {:expression expression
