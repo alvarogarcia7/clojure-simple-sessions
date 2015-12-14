@@ -16,12 +16,12 @@
 ; (* 1 3): 3
 ; nil
 
-; (defmacro evaluate [expression]
-;   {:expression `~@(str `(expression))
-;    :b `(~@expression)})
-; 
-; (defn value-of [expression]
-;   (:value expression))
+(defmacro evaluate [expression]
+  {:expression (str expression)
+   :value `(~@expression)})
+
+(defn value-of [expression]
+  (:value expression))
 
 ; simple.core=> (evaluate (+ 1 1))
 ; (+ 1 1)
