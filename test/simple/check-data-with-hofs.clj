@@ -13,8 +13,10 @@
         sum-of-column (reduce + selected-column)]
         (= selected-total sum-of-column)))
 
-(let [indices [1 3]
-      generate-selector #(fn [dataset] (nth dataset %))
-      selectors (map generate-selector indices)
-      check-selector #(sum-eq-total % data)]
-      (map check-selector selectors))
+(defn validate-columns [indices]
+  (let [generate-selector #(fn [dataset] (nth dataset %))
+         selectors (map generate-selector indices)
+         check-selector #(sum-eq-total % data)]
+         (map check-selector selectors)))
+
+; usage (validate-columns [1 3])
