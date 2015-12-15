@@ -19,4 +19,4 @@
          check-selector #(sum-eq-total % data)]
          (map check-selector selectors)))
 
-; usage (validate-columns [1 3])
+; usage (validate-columns [1 3] data)
