@@ -6,9 +6,9 @@
           ])
 
 (defn sum-eq-total [selector dataset]
-  (let [total (first dataset)
+  (defn total-and-rest [dataset] [(first dataset) (rest dataset)])
+  (let [[total rest-dataset] (total-and-rest dataset)
         selected-total (selector total)
-        rest-dataset (rest dataset)
         selected-column (map selector rest-dataset)
         sum-of-column (reduce + selected-column)]
         (= selected-total sum-of-column)))
