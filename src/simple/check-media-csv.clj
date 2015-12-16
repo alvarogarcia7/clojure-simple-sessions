@@ -5,11 +5,12 @@
 
 
 (with-open [in-file (io/reader filename)]
-  (defn parse-int [s]
-    (Integer/parseInt (re-find #"\A-?\d+" s)))
-  (defn printnums [& nums] (println nums))
-  (defn sum-selection [selector set-]
-    (reduce + (map #(parse-int (selector %)) set-)))
+  (letfn [(parse-int [s]
+                     (Integer/parseInt (re-find #"\A-?\d+" s)))
+          (printnums [& nums]
+                     (println nums))
+          (sum-selection [selector set-]
+                         (reduce + (map #(parse-int (selector %)) set-)))]
 
     (let [contents (doall (csv/read-csv in-file))
            ca (filter #(re-find #"CA" (first %)) contents)
@@ -20,4 +21,4 @@
            val3 (sum-selection second es)]
 
            	(printnums val1 val2 val3)
-           	(= val1 val2 val3)))
+           	(= val1 val2 val3))))
