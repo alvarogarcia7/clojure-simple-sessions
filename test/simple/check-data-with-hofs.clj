@@ -6,12 +6,13 @@
           ])
 
 (defn sum-eq-total [selector dataset]
-  (defn total-and-rest [dataset] [(first dataset) (rest dataset)])
+  (letfn [(total-and-rest [coll]
+             [(first coll) (rest coll)])]
   (let [[total rest-dataset] (total-and-rest dataset)
         selected-total (selector total)
         selected-column (map selector rest-dataset)
         sum-of-column (reduce + selected-column)]
-        (= selected-total sum-of-column)))
+        (= selected-total sum-of-column))))
 
 (defn validate-columns [indices data]
   (let [generate-selector #(fn [dataset] (nth dataset %))
