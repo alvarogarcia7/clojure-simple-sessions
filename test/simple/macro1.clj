@@ -46,6 +46,16 @@
 
 (println (is-truthy? (= 1 1)))
 
+(println (macroexpand '(all-truthy?
+                        (= false true)
+                        (= 1 1)
+                        )))
+
+(println (all-truthy?
+               (= false true)
+               (= 1 1)
+               ))
+
 ; (defn test-library-facts []
 ;   (all-truthy?
 ;     (= false true)
