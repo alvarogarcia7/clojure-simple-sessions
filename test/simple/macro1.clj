@@ -36,9 +36,15 @@
            (let [wrong (->> exprs (filter (comp false? value-of)))]
              {:message (str "KO - " (count wrong)) :failing wrong}))))
 
+(defmacro is-truthy? [element]
+  `(do
+     ~{:expression (str element)
+       :value      element}))
+
 (defmacro all-truthy? [& elements]
   `(do [~@(map #(evaluate %) elements)]))
 
+(println (is-truthy? (= 1 1)))
 
 ; (defn test-library-facts []
 ;   (all-truthy?
