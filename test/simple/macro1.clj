@@ -42,7 +42,11 @@
        :value      element}))
 
 (defmacro all-truthy? [& elements]
-  `(do [~@(map #(evaluate %) elements)]))
+  (map #(is-truthy? %) elements))
+
+
+;(defmacro all-truthy? [& elements]
+;(map #(is-truthy? %) elements))
 
 (println (is-truthy? (= 1 1)))
 
@@ -61,3 +65,13 @@
 ;     (= false true)
 ;     (= 1 1)
 ;   ))
+
+(println
+  (macroexpand-1
+    '(all-truthy? (= false true)
+                  (= 1 2))))
+
+(print (all-truthy?
+         (= false true)
+         (= 1 1)
+         ))
