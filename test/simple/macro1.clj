@@ -17,8 +17,11 @@
 ; nil
 
 (defmacro evaluate [expression]
-  {:expression (str expression)
-   :value expression})
+  `(do ~{:expression expression
+         :value      expression}))
+
+; (evaluate (= false true))
+;=> {:expression "(= false true)", :value false}
 
 (defn value-of [expression]
   (:value expression))
