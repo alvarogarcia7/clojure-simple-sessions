@@ -57,8 +57,7 @@
 
 (println (all-truthy?
                (= false true)
-               (= 1 1)
-               ))
+               (= 1 1)))
 
 ; (defn test-library-facts []
 ;   (all-truthy?
@@ -73,5 +72,4 @@
 
 (print (all-truthy?
          (= false true)
-         (= 1 1)
-         ))
+         (= 1 1)))
