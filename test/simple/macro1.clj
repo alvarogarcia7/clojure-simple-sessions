@@ -7,8 +7,8 @@
 (defmacro preval
   [& expressions]
   `(do ~@(->>
-                 expressions
-                 (map print-and-evaluate))))
+           expressions
+           (map print-and-evaluate))))
 
 ; usage
 ; simple.core=> (preval (+ 1 1) (* 1 3))
@@ -36,13 +36,8 @@
 ;           (let [wrong (->> exprs (filter (comp false? value-of)))]
 ;             {:message (str "KO - " (count wrong)) :failing wrong}))))
 
-(defmacro is-truthy? [element]
-  `(do
-     ~{:expression (str element)
-       :value      element}))
-
-(defmacro all-truthy? [& elements]
-  (map #(is-truthy? %) elements))
+;(defmacro all-truthy? [& elements]
+;  (map #(evaluate %) elements))
 
 
 ;(defmacro all-truthy? [& elements]
@@ -50,14 +45,15 @@
 
 (println (is-truthy? (= 1 1)))
 
+;( println (macroexpand '(evaluate (= 1 1))))
+;
 (println (macroexpand '(all-truthy?
-                        (= false true)
-                        (= 1 1)
-                        )))
+                         (= false true)
+                         (= 1 1))))
 
 (println (all-truthy?
-               (= false true)
-               (= 1 1)))
+           (= false true)
+           (= 1 1)))
 
 ; (defn test-library-facts []
 ;   (all-truthy?
