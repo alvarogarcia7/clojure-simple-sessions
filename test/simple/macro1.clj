@@ -29,12 +29,12 @@
 ; simple.core=> (evaluate (+ 1 1))
 ; {:expression "(+ 1 1)", :value 2}
 
-(defmacro all-truthy2? [& elements]
-  (let [exprs (map #(evaluate %) elements)]
-         (if-let [all-correct (->> exprs (every? (comp identity value-of)))] 
-           {:message "OK"}
-           (let [wrong (->> exprs (filter (comp false? value-of)))]
-             {:message (str "KO - " (count wrong)) :failing wrong}))))
+;(defmacro all-truthy2? [& elements]
+;  (let [exprs (map #(evaluate %) elements)]
+;         (if-let [all-correct (->> exprs (every? (comp identity value-of)))]
+;           {:message "OK"}
+;           (let [wrong (->> exprs (filter (comp false? value-of)))]
+;             {:message (str "KO - " (count wrong)) :failing wrong}))))
 
 (defmacro is-truthy? [element]
   `(do
