@@ -52,6 +52,13 @@
   `(do
      [~@(map (fn [arg] (list macroname arg)) args)]))
 
+;(defmacro report-all
+;  [& args]
+;  `(do
+;     [~@(map #(report %) args)]))
+;(macroexpand '(report-all (= 1 1) (= 1 2)))
+;=> (do [{:r (= 1 1), :ok p1__7447#} {:r (= 1 2), :ok p1__7447#}])
+
 (report (= 1 1))
 (doseq-macro report (= 1 1) (= 1 2))
 
