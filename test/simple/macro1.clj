@@ -40,32 +40,19 @@
 ;  (map #(evaluate %) elements))
 
 
-;(defmacro all-truthy? [& elements]
-;(map #(is-truthy? %) elements))
+(defmacro report
+  [to-try]
+  `(let [result# ~to-try]
+     (if result#
+       {:ok (quote ~to-try) :r result#}
+       {:ko (quote ~to-try) :r result#})))
 
-(println (is-truthy? (= 1 1)))
+(defmacro doseq-macro
+  [macroname & args]
+  `(do
+     [~@(map (fn [arg] (list macroname arg)) args)]))
 
-;( println (macroexpand '(evaluate (= 1 1))))
-;
-(println (macroexpand '(all-truthy?
-                         (= false true)
-                         (= 1 1))))
+(report (= 1 1))
+(doseq-macro report (= 1 1) (= 1 2))
 
-(println (all-truthy?
-           (= false true)
-           (= 1 1)))
-
-; (defn test-library-facts []
-;   (all-truthy?
-;     (= false true)
-;     (= 1 1)
-;   ))
-
-(println
-  (macroexpand-1
-    '(all-truthy? (= false true)
-                  (= 1 2))))
-
-(print (all-truthy?
-         (= false true)
-         (= 1 1)))
+(macroexpand '(doseq-macro report (= 1 1) (= 1 2)))
