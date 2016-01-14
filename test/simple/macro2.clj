@@ -42,3 +42,5 @@
 (macroexpand '(inc2-quoted (* 2 1 3)))
 ;; => (do (clojure.core/println (quote (* 2 1 3))) (clojure.core/+ 2 (* 2 1 3)))
 
+;; currently at https://learnxinyminutes.com/docs/clojure-macros/
+;; You can use the usual destructuring args. Expand list variables using ~@
