@@ -36,6 +36,7 @@
 ;; => 4
 
 (inc2-quoted (do (Thread/sleep 10000) (* 2 1 3)))
+;; this function takes 10s to execute, as there is no double execution
 ;; => 8
 
 (macroexpand '(inc2-quoted (* 2 1 3)))
