@@ -28,7 +28,9 @@
 
 (defmacro inc2-quoted
   [n]
-  `(+ 2 ~n))
+  `(do
+     (println ~n)
+     (+ 2 ~n)))
 
 (inc2-quoted 2)
 ;; => 4
