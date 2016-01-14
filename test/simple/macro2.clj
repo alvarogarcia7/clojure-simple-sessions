@@ -29,7 +29,7 @@
 (defmacro inc2-quoted
   [n]
   `(do
-     (println ~n)
+     (println (quote ~n))
      (+ 2 ~n)))
 
 (inc2-quoted 2)
@@ -37,3 +37,7 @@
 
 (inc2-quoted (* 2 1 3))
 ;; => 8
+
+(macroexpand '(inc2-quoted (* 2 1 3)))
+;; => (do (clojure.core/println (quote (* 2 1 3))) (clojure.core/+ 2 (* 2 1 3)))
+
