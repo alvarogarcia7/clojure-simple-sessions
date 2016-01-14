@@ -28,14 +28,14 @@
 
 (defmacro inc2-quoted
   [n]
-  `(do
-     (println (quote ~n))
-     (+ 2 ~n)))
+  `(do (let [result# ~n]
+         (println (quote ~n))
+         (+ 2 result#))))
 
 (inc2-quoted 2)
 ;; => 4
 
-(inc2-quoted (* 2 1 3))
+(inc2-quoted (do (Thread/sleep 10000) (* 2 1 3)))
 ;; => 8
 
 (macroexpand '(inc2-quoted (* 2 1 3)))
