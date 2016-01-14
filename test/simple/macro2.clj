@@ -25,3 +25,10 @@
 
 (inc2 (+ 2 4))
 ;; => 8
+
+(defmacro inc2-quoted
+  [n]
+  `(+ 2 ~n))
+
+(inc2-quoted 2)
+;; => 4
