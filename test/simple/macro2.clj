@@ -14,3 +14,10 @@
   '(reverse "Hello World!"))
 
 (my-first-quoted-macro)
+
+(defmacro inc2
+  [n]
+  (list + 2 n))
+
+(inc2 2)
+;; => 4
