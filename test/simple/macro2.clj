@@ -14,6 +14,7 @@
   '(reverse "Hello World!"))
 
 (my-first-quoted-macro)
+;; => (\! \d \l \r \o \W \space \o \l \l \e \H)
 
 (defmacro inc2
   [n]
