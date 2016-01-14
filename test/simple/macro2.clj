@@ -8,3 +8,9 @@
 
 (my-first-macro)
 ;; => (\d \l \r \o \w \space \o \l \l \e \h)
+
+(defmacro my-first-quoted-macro
+  []
+  '(reverse "Hello World!"))
+
+(my-first-quoted-macro)
