@@ -29,7 +29,7 @@
 (defmacro inc2-quoted
   [n]
   `(do (let [result# ~n]
-         (println (quote ~n))
+         (println (quote ~n))                               ;; this version, for printing, cannot work with ``result#``
          (+ 2 result#))))
 
 (inc2-quoted 2)
