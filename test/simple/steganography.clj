@@ -3,10 +3,10 @@
 
 (defn decrypt-message
   [message]
-  (let [sum-of-array (map #(apply + %) message)
-        decrypted (map char sum-of-array)]
-    (apply str
-           decrypted)))
+    (->> message
+         (map #(apply + %))
+         (map char )
+         (apply str)))
 
 (facts "decrypting messages"
        (fact "a single-letter message"
