@@ -1,6 +1,3 @@
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
 (facts)
 (load-file "test/simple/polynomial.clj")
 (facts)
@@ -498,3 +495,6 @@ s1
 (rand-int 0)
 (rand-int -1)
 (source comp)
+(conceal-message "///")
+(ns simple.steganography)
+(conceal-message "///")
