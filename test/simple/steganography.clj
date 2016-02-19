@@ -10,9 +10,10 @@
 
 (defn conceal-message
   [plaintext]
-  (letfn [(split-in-two [n] (-> (let [value (rand-int n)
-                                      difference (- n value)]
-                                  [value difference])))]
+  (letfn [(split-in-two [n]
+            (let [value (rand-int n)
+                  difference (- n value)]
+              [value difference]))]
     (->> plaintext
          (map int)
          (map split-in-two))))
