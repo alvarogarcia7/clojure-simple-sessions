@@ -22,4 +22,6 @@
 
 (facts "encrypting messages"
        (fact "a single-letter message"
-             (encrypt-message "s") => '([113 2])))
+             (encrypt-message "s") => '([113 2]))
+       (fact "a multiple-letter message"
+             (encrypt-message "sss") => '([113 2] [113 2] [113 2])))
