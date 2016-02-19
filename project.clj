@@ -7,4 +7,6 @@
                             [org.clojure/data.csv "0.1.3"]]
   :main ^:skip-aot simple.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}
+             :dev {:plugins [[lein-midje "3.1.3"]]
+                   :dependencies [[midje "1.6.3"]]}})
