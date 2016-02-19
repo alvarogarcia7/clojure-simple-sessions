@@ -12,7 +12,9 @@
   [plaintext]
     (->> plaintext
          (map int)
-         (map #(-> [(- % 2) 2]))))
+         (map #(-> (let [value (rand-int %)
+                         difference (- % value)]
+                     [value difference])))))
 
 (facts "decrypting messages"
        (fact "a single-letter message"
@@ -23,7 +25,8 @@
              (reveal-message '([45 2] [45 2] [45 2])) => "///"))
 
 (facts "encrypting messages"
-       (fact "a single-letter message"
-             (conceal-message "s") => '([113 2]))
-       (fact "a multiple-letter message"
-             (conceal-message "sss") => '([113 2] [113 2] [113 2])))
+       (let [conceal-then-reveal (comp reveal-message conceal-message)]
+         (fact "a single-letter message"
+               (conceal-then-reveal "s") => "s")
+         (fact "a multiple-letter message"
+               (conceal-then-reveal "sss") => "sss")))
