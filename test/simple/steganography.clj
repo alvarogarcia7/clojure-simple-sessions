@@ -10,11 +10,12 @@
 
 (defn conceal-message
   [plaintext]
+  (letfn [(split-in-two [n] (-> (let [value (rand-int n)
+                                   difference (- n value)]
+                               [value difference])))]
     (->> plaintext
          (map int)
-         (map #(-> (let [value (rand-int %)
-                         difference (- % value)]
-                     [value difference])))))
+         (map split-in-two))))
 
 (facts "decrypting messages"
        (fact "a single-letter message"
