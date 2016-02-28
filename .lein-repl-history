@@ -1,143 +1,3 @@
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(eva [:y] 1)
-(eva [:y 2] 1)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(eva [:y] 1)
-(number? 1)
-(number? a)
-(number? :a)
-(number? "a")
-(every number? ["a"])
-(all number? ["a"])
-(every? number? ["a"])
-(every? number? [1 2 3])
-(every? number? [1 2 3 :a])
-(every? number? [1 2 3 :a 2])
-(load-file "test/simple/polynomial.clj")
-(facts)
-(rest [0 1 2]
-)
-(load-file "test/simple/polynomial.clj")
-(facts)
- (eva "0" 1)
-(parse- "0" :x)
-(load-file "test/simple/polynomial.clj")
-(facts)
- (eva "0" 1)
-(facts)
-(load-file "test/simple/polynomial.clj")
- (eva "0" 1)
-(facts)
-(eva "x" 1)
-(eva "y" 1)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(macroexpand '(when (pos? a) (println "positive") (/ b a)))
-(macroexpand '(+ 1 2))
-(eval (macroexpand '(+ 1 2)))
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(for [x [1 2 3]] x)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(merge {:a 1} {:c 2}}
-(merge {:a 1} {:c 2})
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(:line :a)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(test-library-facts)
-(->> [1 2 3] inc inc inc)
-(def name "jb")
-(load-file "test/simple/polynomial.clj")
-(facts)
-(->> 1 inc inc)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(source ->>)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(load-file "test/simple/polynomial.clj")
-(facts)
-(test-library-facts)
-(source if-let)
-(load-file "test/simple/polynomial.clj")
-(exercise-macro)
-(load-file "test/simple/polynomial.clj")
-(exercise-macro)
-(load-file "test/simple/polynomial.clj")
 (code-critic (1 + 1) (+ 1 1))
 (code-critic (1 + 1))
 (code-critic (1 + 1) (1 + 1))
@@ -498,3 +358,143 @@ s1
 (conceal-message "///")
 (ns simple.steganography)
 (conceal-message "///")
+(let [line (read-line)]
+  (->> line
+  lower-case
+  frequencies
+  keys
+  #(< 27 (count %))
+  println))
+(use '[clojure.string :only (split triml lower-case)])
+  lower-case(let [line (read-line)]
+  (->> line
+  lower-case
+  frequencies
+  keys
+  #(< 27 (count %))
+  println))
+(def line "aa rr ")
+(->> line
+  lower-case
+  frequencies
+  keys)
+  (->> line
+  lower-case
+  frequencies
+  keys
+  count
+  (< 27))
+  (->> line
+  lower-case
+  frequencies
+  keys
+  count
+  (<= 27)
+  #(if % "pangram" "not pangram")
+  println)
+  (->> line
+  lower-case
+  frequencies
+  keys
+  count
+  (<= 27)
+  (fn [is] (if is "pangram" "not pangram"))
+  println)
+(->> line #(inc %))
+(->> 3 #(inc %))
+(->> 3 (inc))
+(->> 3 inc)
+(->> 3 #(if % 4 5))
+(-> 3 #(if % 4 5))
+(->> 3 (fn [a] a))
+(->> 3 ((fn [a] a)))
+(->> 3 (#(a))
+)
+(->> 3 (#(%))
+)
+(->> 3 (#(-> %)))
+(->> 3 #(-> %))
+  (->> line
+  lower-case
+  frequencies
+  keys
+  count
+  (<= 27)
+  ((fn [is] (if is "pangram" "not pangram")))
+  println)
+(def line "qwfpgjluyarstdhneiozxcvbkm")
+(defn- is-pangram? [text]
+  (->> text
+  lower-case
+  frequencies
+  keys
+  (#(dissoc % \space))
+  count
+  (<= 26)))
+(is-pangram? line)
+(defn- is-pangram? [text]
+  (->> text
+  lower-case
+  frequencies
+  (#(dissoc % \space)))
+)
+(is-pangram? line)
+line
+(def line "qwfpgjluyarstdhneiozxcvbkm   ")
+(is-pangram? line)
+(defn- is-pangram? [text]
+  (->> text
+  lower-case
+  frequencies
+  (#(dissoc % \space))
+  keys
+  count
+  (<= 26)))
+(is-pangram? line)
+(def line "qwfjluyarstdhneiozxcvbkm   ")
+(is-pangram? line)
+(def str "acxz")
+(def str '#clojure.core/str)
+(def str 'clojure.core/str)
+(str "a " 1)
+(str "a " "1")
+(str " "1")
+(str " 1")
+(def inp "acxz")
+inp
+(str 2 3)
+(->> inp char)
+(->> inp (map char))
+(->> inp (map int))
+(butlast inp)
+(map vector inp (butlast inp))
+(drop 1 inp)
+(map vector inp (drop 1 inp))
+(map (fn [[a b]] (- a b)) (list [\a \c] [\c \x] [\x \z]))
+(->> inp
+  (map int)
+  (#(map vector % (drop 1 %)))
+  (map (fn [[a b]] (- a b))))
+(->> inp
+  (map int)
+  (#(map vector % (drop 1 %)))
+  (map (fn [[a b]] (- a b)))
+  (#(= % (reverse %))))
+(read-int)
+(read-line)
+(def array-size 6)
+(map Integer/parseInt (take array-size (clojure.string/split #" " (read-line))))
+(take array-size (clojure.string/split #" " (read-line)))
+(take array-size (clojure.string/split (read-line) #" "))
+(def li (list "1" "2" "3" "4" "5" "6"))
+(map Integer/parseInt li)
+(def inp (list 1 2 3 4))
+(map vector inp (drop 1 inp))
+inp
+(map Integer/parseInt li)
+(map Integer/parseI li)
+(map Integer/parseInt li)
+(map #(Integer/parseInt %) li)
+(def ints (list 1 2 3 4 5 6))
+(java.util.Collections/binarySearch li 2)
+(java.util.Collections/binarySearch ints 2)
