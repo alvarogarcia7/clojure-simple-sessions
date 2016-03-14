@@ -11,14 +11,14 @@
 (defn- prime? [n]
       (.isProbablePrime (BigInteger/valueOf n) certainty))
 
-(def primes (concat [2] (take 10001 
+(def- primes [n] (concat [2] (take n 
    (filter prime? 
       (take-nth 2 
          (range 1 Integer/MAX_VALUE))))))
 
 (defn prime-squares-remainder-of [n]
   (let [n (bigint n)
-         pn (nth primes (dec n))]
+         pn (nth (primes n) (dec n))]
     (mod 
       (+'
         (pow (inc pn) n) 
@@ -27,7 +27,7 @@
 
 (defn prime-squares-remainder-geq [n]
   (->> 
-    (range) 
+    (range)
     (map inc) 
     (drop-while #(>= n (prime-squares-remainder-of %)))
     (take 1)
