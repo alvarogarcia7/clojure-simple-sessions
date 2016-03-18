@@ -1,17 +1,3 @@
-(comment
-  (defn coin-change
-    ([amount coins] (coin-change amount coins 0))
-    ([amount coins index]
-     (cond
-       (<= amount 0) 0
-       (>= index (dec (count coins))) (do (println index) 1)
-       :default (+
-                  (let [first-coin (first coins)
-                        rest-coins (vec (rest coins))
-                        left (- amount (nth coins index))]
-                    (coin-change amount coins (inc index))
-                    (coin-change left coins index)))))))
- 
 (defn coins [])
 (defn add-coin [state]
   (let [remaining (:rem state)]
