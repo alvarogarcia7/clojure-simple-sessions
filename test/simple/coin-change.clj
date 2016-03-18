@@ -1,3 +1,6 @@
+;; TODO: do not depend on global variables @result / coins
+;; TODO: remove duplicated ways of retunrning change
+
 (defn coins [])
 (defn add-coin [state]
   (let [remaining (:rem state)]
