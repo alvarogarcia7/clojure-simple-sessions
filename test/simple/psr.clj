@@ -11,31 +11,32 @@
 (defn- prime? [n]
       (.isProbablePrime (BigInteger/valueOf n) certainty))
 
-(def- primes [n] (concat [2] (take n 
+(defn- primes [n] (concat [2] (take n 
    (filter prime? 
       (take-nth 2 
          (range 1 Integer/MAX_VALUE))))))
 
-(defn prime-squares-remainder-of [n]
-  (let [n (bigint n)
-         pn (nth (primes n) (dec n))]
+(defn prime-squares-remainder-of [[n pn]]
     (mod 
       (+'
         (pow (inc pn) n) 
         (pow (dec pn) n)) 
-      (square pn))))
+      (square pn)))
 
 (defn prime-squares-remainder-geq [n]
-  (->> 
-    (range)
-    (map inc) 
-    (drop-while #(>= n (prime-squares-remainder-of %)))
-    (take 1)
-    first))
+  (let [primes (primes n)
+         sqrt (Math/sqrt n)]
+    (->> 
+      (range)
+      (map #(-> [% (nth primes %)]))
+      (drop-while #(<= (second %) sqrt))
+      (drop-while #(>= n (prime-squares-remainder-of %)))
+      first
+      first)))
 
-(let [t (Integer/parseInt (read-line))
+(comment (let [t (Integer/parseInt (read-line))
       matrix (for [_ (range t)] (bigint (read-line)))]
   (->> matrix
     (map prime-squares-remainder-geq)
     (map println)
-    doall))
+    doall)))
